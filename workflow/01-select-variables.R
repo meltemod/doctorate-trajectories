@@ -34,14 +34,15 @@ new_df = df_desc %>%
     
     SAS_NAME == "OBSNUM"       ~     "ID",
     SAS_NAME == "REFYR"        ~     "SURVEY_YEAR",
-    
+
     SAS_NAME == "ACADADJF"       ~     "WORK_AC_ADJUNCT",
     SAS_NAME == "ACADADMN"       ~     "WORK_AC_DEAN_PRES",
     SAS_NAME == "ACADNA"         ~     "WORK_AC_NA",
-    SAS_NAME == "ACADOTHP"       ~     "WORK_AC_ASSIST",
+    SAS_NAME == "ACADOTHP"       ~     "WORK_AC_ASSISTANT",
     SAS_NAME == "ACADPDOC"       ~     "WORK_AC_POSTDOC",
     SAS_NAME == "ACADRCHF"       ~     "WORK_AC_FAC_RESEARCH",
     SAS_NAME == "ACADTCHF"       ~     "WORK_AC_FAC_TEACHING",
+    SAS_NAME == "FACRANK"        ~     "WORK_AC_FAC_RANK",
     SAS_NAME == "LOOKWK"         ~     "WORK_UNEMP_LOOKING",
     SAS_NAME == "WRKG"           ~     "WORK_PAY_VS_PROFIT",
     
@@ -61,13 +62,10 @@ new_df = df_desc %>%
     SAS_NAME == "SPOWK"          ~     "DMG_SPOUSE_WORK_ST",
     SAS_NAME == "EDDAD"          ~     "DMG_EDUC_FATHER",
     SAS_NAME == "EDMOM"          ~     "DMG_EDUC_MOTHER",
+    SAS_NAME == "FNINUS"         ~     "DMG_LIVE_IN_US",
     
-    
-    
-    SAS_NAME == "CTZFOR"         ~     "DMG_VISA_TYPE",
     SAS_NAME == "CTZN"           ~     "DMG_CITIZEN",
     SAS_NAME == "CTZN_DRF"       ~     "DMG_CITIZEN_DOCTORATE",
-    SAS_NAME == "CTZUS"          ~     "DMG_CITIZEN_TYPE",
     
     SAS_NAME == "D25YRP"         ~     "DEG_YEAR_AWARD_2ND_HIGH",
     SAS_NAME == "D2DG"           ~     "DEG_TYPE_2ND_HIGH",
@@ -81,15 +79,17 @@ new_df = df_desc %>%
     SAS_NAME == "D3RGNP"         ~     "DEG_LOC_CODE_3RD_HIGH",
     SAS_NAME == "ND3MEMG"        ~     "DEG_FIELD_3RD_HIGH",
     
-    SAS_NAME == "HDAYRP"         ~     "DEG_YEAR_AWARD_1ST_HIGH",
+    SAS_NAME == "HDAY5P"         ~     "DEG_YEAR_AWARD_1ST_HIGH",
     SAS_NAME == "HDDGRUS"        ~     "DEG_LOC_US_1ST_HIGH",
-    SAS_NAME == "HDDGNP"         ~     "DEG_LOC_CODE_1ST_HIGH",
+    SAS_NAME == "HDRGNP"         ~     "DEG_LOC_CODE_1ST_HIGH",
     SAS_NAME == "NDGMEMG"        ~     "DEG_FIELD_1ST_HIGH",
+    SAS_NAME == "NDGMENGP"       ~     "DEG_FIELD_MINOR_1ST_HIGH",
     
     SAS_NAME == "MR5YRP"         ~     "DEG_YEAR_AWARD_MOST_RECENT",
     SAS_NAME == "MRDG"           ~     "DEG_TYPE_MOST_RECENT",
     SAS_NAME == "MRDGRUS"        ~     "DEG_LOC_US_MOST_RECENT",
     SAS_NAME == "NMRMEMG"        ~     "DEG_FIELD_MOST_RECENT",
+    SAS_NAME == "NMRMENGP"       ~     "DEG_FIELD_MINOR_MOST_RECENT",
     
   )) %>%
   filter(NEW_NAME != "") #filter new column if no new name is assigned (we will not use those variables in analysis)
