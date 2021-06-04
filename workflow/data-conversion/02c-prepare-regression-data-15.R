@@ -6,9 +6,12 @@
 #  2021-06-03                                                     #
 #--------------------------------------------------               #
 
+#SELECT DATA COLLECTION YEAR (19, 17 or 15)
+year = 15
+
 #data file location
 bucket = 'E:/data/doctorate-trajectories'
-loc_import = 'psd19Public'   #original data location
+loc_import = paste0('psd',year,'Public')   #original data location
 loc_export = 'regression_dataset'   #original data location
 
 #create export folder
@@ -21,9 +24,12 @@ library(data.table)  # for data conversions
 library(sjlabelled)  #for data labels and looking through entry types
 
 #load data
-fname = 'epsd19.sas7bdat' # SAS data file
+fname = paste0('epsd',year,'.sas7bdat') # SAS data file
 df = read_sas(file.path(bucket,loc_import,fname))
 df = as_tibble(df)
+
+#if id variable id named as REFID, rename as OBSNUM, and reorder variables by alphabetical order
+if('REFID' %in% names(df) == TRUE){ names(df)[which(names(df) == 'REFID')] = 'OBSNUM' ;  df = df[, order(names(df))]}
 
 #take the subset of the variables of interest
 df_varnames = read_csv(file.path(bucket,loc_export,'regression_variables.csv'))
@@ -248,4 +254,4 @@ iyear = which(names(df) == 'SURVEY_YEAR')                      #survey year inde
 neworder = c(iid, iyear, order(names(df)[-c(iid,iyear)]) )     #order all except id and survey year index
 df = df[ ,names(df)[neworder]]                                 #order goes id, survey year, and others in alphabetical order
 
-write_csv(df, file.path(bucket,loc_export,'regression_data.csv'))
+write_csv(df, file.path(bucket,loc_export,paste0('regression_data_',year,'.csv')))
