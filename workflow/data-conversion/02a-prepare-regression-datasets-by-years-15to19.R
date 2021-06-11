@@ -36,7 +36,7 @@ select_year_for_data = function(year){
   
   #take the subset of the variables of interest
   print('subsetting variables...')
-  df_varnames = read_csv(file.path(bucket,loc_export,'regression_variables.csv'))
+  df_varnames = read_csv(file.path(bucket,loc_export,'regression_variables_15to19.csv'))
   df = df[,names(df) %in% df_varnames$SAS_NAME]
   
   print('reformatting variables...')
