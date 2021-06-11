@@ -34,6 +34,7 @@ new_df = df_desc %>%
     
     SAS_NAME == "OBSNUM"       ~     "ID",
     SAS_NAME == "REFYR"        ~     "SURVEY_YEAR",
+    SAS_NAME == "COHORT"          ~     "COHORT",
 
     SAS_NAME == "ACADADJF"       ~     "WORK_AC_ADJUNCT",
     SAS_NAME == "ACADADMN"       ~     "WORK_AC_DEAN_PRES",
@@ -88,11 +89,11 @@ new_df = df_desc %>%
     SAS_NAME == "MR5YRP"         ~     "DEG_YEAR_AWARD_MOST_RECENT",
     SAS_NAME == "MRDG"           ~     "DEG_TYPE_MOST_RECENT",
     SAS_NAME == "MRDGRUS"        ~     "DEG_LOC_US_MOST_RECENT",
-    SAS_NAME == "NMRMEMG"        ~     "DEG_FIELD_MOST_RECENT",
+    SAS_NAME == "NMRMEMG"        ~     "DEG_FIELD_MOST_RECENT", 
     SAS_NAME == "NMRMENGP"       ~     "DEG_FIELD_MINOR_MOST_RECENT",
     
   )) %>%
   filter(NEW_NAME != "") #filter new column if no new name is assigned (we will not use those variables in analysis)
 
-write_csv(new_df, file.path(bucket,loc_export,'regression_variables.csv'))
+write_csv(new_df, file.path(bucket,loc_export,'regression_variables_15to19.csv'))
 
