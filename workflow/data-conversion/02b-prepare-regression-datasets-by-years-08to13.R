@@ -159,10 +159,12 @@ select_year_for_data = function(year){
   names(df) = df_varnames$NEW_NAME
   
   #reorder variables
-  iid = which(names(df) == 'ID')                                 #id index
-  iyear = which(names(df) == 'SURVEY_YEAR')                      #survey year index
-  neworder = c(iid, iyear, order(names(df)[-c(iid,iyear)]) )     #order all except id and survey year index
-  df = df[ ,names(df)[neworder]]                                 #order goes id, survey year, and others in alphabetical order
+  `%notin%` = Negate(`%in%`)
+  vv = names(df)[names(df) %notin% c('ID','SURVEY_YEAR')]
+  new_order = c('ID','SURVEY_YEAR',vv)
+  df = df %>%
+    select(eval(new_order))
+  #order goes id, survey year, and others in alphabetical order
   
   print('saving dataset...')
   write_csv(df, file.path(bucket,loc_export,paste0('regression_data_',year,'.csv')))
