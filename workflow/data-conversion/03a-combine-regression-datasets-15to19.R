@@ -31,3 +31,4 @@ length(unique(df$ID))
 nrow(unique(df))
 
 write_csv(df, file.path(bucket,loc_export,'regression_data_15_19.csv'))
+rm(list=ls())
