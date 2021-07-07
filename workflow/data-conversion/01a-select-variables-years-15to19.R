@@ -5,10 +5,19 @@
 #  2021-04-22                    #
 #--------------------------------#
 
+external='yes'
+
 #data file location
 bucket = 'E:/data/doctorate-trajectories'
 loc_import = 'psd19Public'   #original data location
 loc_export = 'regression_dataset'   #original data location
+
+if(external == 'yes'){
+  bucket = 'D:/data/survey-of-doctorate-recipients'
+  loc_import = 'psd19Public'   #original data location
+  loc_export = 'regression_dataset'   #original data location
+}
+
 
 #create export folder
 if(dir.exists(file.path(bucket,loc_export)) == FALSE){dir.create(file.path(bucket,loc_export))}
